@@ -13,4 +13,12 @@ Little Snitch is licensed:
     - makedirs: True
     - require:
       - Little Snitch is installed
+
+Little Snitch is reloaded:
+  cmd.run:
+    - name: |
+        killall at.obdev.littlesnitch.daemon
+        killall "Little Snitch Agent"
+    - onchanges:
+      - Little Snitch is licensed
 {%- endif %}
