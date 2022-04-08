@@ -1,24 +1,108 @@
-tool:
-  snitch:
-  # find license in /Library/Application Support/Objective Development/Little Snitch/registration.xpl
-  # after having activated Little Snitch manually
-    license: |
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+# yamllint disable rule:comments-indentation
+# yamllint disable rule:line-length
+---
+######################################################################
+# Mind that this is to be read as an overview of available
+# settings which can be set in many different ways, not only
+# by providing pillar values.
+# The different sources will be merged. For further information,
+# please see the docs, `libmapstack.jinja` as well as the configured
+# default sources in `parameters/map_jinja.yaml`.
+#
+# This documentation will need to be updated once there is
+# some learned experience. @TODO
+######################################################################
+
+# Apart from the various source files, there are two independent source trees
+# for user-specific configuration.
+# Generally tool_snitch > tool_global.
+# `tool_global` focuses on specific users, of which most values
+# will be respected by all formulae in the `tool` suite:
+tool_global:
+  users:
+
+      # The following is global configuration for the user named `user`.
+    user:
+
+        # Persist environment variables used by this formula for this
+        # user to this file (will be appended to a file relative to $HOME)
+      persistenv: '.config/zsh/zshenv'
+
+        # Add runcom hooks specific to this formula to this file
+        # for this user (will be appended to a file relative to $HOME)
+      rchook: '.config/zsh/zshrc'
+
+tool_snitch:
+
+    # Specify an explicit version (works on most Linux distributions) or
+    # keep the packages updated to their latest version on subsequent runs
+    # by leaving version empty or setting it to 'latest'
+    # (again for Linux, brew does that anyways).
+  version: latest
+
+    # Find license in
+    # /Library/Application Support/Objective Development/Little Snitch/registration.xpl
+    # after having activated Little Snitch manually once.
+  license: |-
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+      <key>d8e8fca2dc0</key>
+      <data>
+      PCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXAK
+      </data>
+      <key>57a54c8e2</key>
       <dict>
-        <key>d8e8fca2dc0</key>
-        <data>
-        PCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXAK
-        </data>
-        <key>57a54c8e2</key>
-        <dict>
-          <key>owner</key>
-          <string>user</string>
-        </dict>
-        <key>b5470458133</key>
-        <data>
-        PCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwCg==
-        </data>
+        <key>owner</key>
+        <string>user</string>
       </dict>
-      </plist>
+      <key>b5470458133</key>
+      <data>
+      PCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwCg==
+      </data>
+    </dict>
+    </plist>
+
+    # User configuration can also be specified here in
+    # `tool_snitch:users`. It will override
+    # configuration sourced from `tool_global:users`.
+  users:
+    user:
+      persistenv: '.bash_profile'
+
+######################################################################
+# The following settings define default values for this formula,
+# depending on different grains. You should not have to modify them
+# in most cases. For a full overview, see the different files
+# in `parameters`.
+######################################################################
+  lookup:
+    pkg:
+      name: little-snitch
+    rootgroup: root
+    paths:
+      confdir: '.little-snitch'
+      conffile: 'config'
+
+######################################################################
+# This is where `tool` suite settings end and Salt behavior settings
+# inherited from `salt-formulas/template-formula` start. They will
+# influence how exactly the TOFS pattern is applied. Mind that
+# parts of this are disabled for `configsync.sls`.
+######################################################################
+  tofs:
+    # The files_switch key serves as a selector for alternative
+    # directories under the formula files directory. See TOFS pattern
+    # doc for more info.
+    # Note: Any value not evaluated by `config.get` will be used literally.
+    # This can be used to set custom paths, as many levels deep as required.
+    files_switch:
+      - any/path/can/be/used/here
+      - id
+      - roles
+      - osfinger
+      - os
+      - os_family

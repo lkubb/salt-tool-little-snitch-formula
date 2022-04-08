@@ -1,16 +1,24 @@
-{%- set snitch = salt['pillar.get']('tool:snitch', {}) -%}
+# -*- coding: utf-8 -*-
+# vim: ft=sls
+
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- set sls_package_install = tplroot ~ '.package.install' %}
+{%- from tplroot ~ "/map.jinja" import mapdata as snitch with context %}
 
 include:
-  - .package
+  - {{ sls_package_install }}
+
 
 {%- if snitch.get('license') %}
+
 Little Snitch is licensed:
   file.managed:
     - name: /Library/Application Support/Objective Development/Little Snitch/registration.xpl
     - contents: |
         {{ snitch.license | indent(8) }}
     - mode: '0644'
-    - makedirs: True
+    - makedirs: true
     - require:
       - Little Snitch is installed
 
