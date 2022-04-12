@@ -9,6 +9,7 @@
 include:
   - {{ sls_config_clean }}
 
+
 Little Snitch is removed:
   pkg.removed:
     - name: {{ snitch.lookup.pkg.name }}

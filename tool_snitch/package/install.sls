@@ -5,6 +5,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as snitch with context %}
 
+
 Little Snitch is installed:
   pkg.installed:
     - name: {{ snitch.lookup.pkg.name }}
