@@ -78,51 +78,7 @@ Formula-specific
 This license is a made-up example, of course (verify: ``echo 'PCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwCg==' | base64 -d``). I'm currently hoping this is derived from your registration data only and therefore installable automatically.
 Find ``/Library/Application Support/Objective Development/Little Snitch/registration.xpl`` after registering Little Snitch and paste its contents into the pillar.
 
-
-Available states
-----------------
-
-The following states are found in this formula:
-
-.. contents::
-   :local:
-
-
-``tool_snitch``
-~~~~~~~~~~~~~~~
-*Meta-state*.
-
-Performs all operations described in this formula according to the specified configuration.
-
-
-``tool_snitch.package``
-~~~~~~~~~~~~~~~~~~~~~~~
-Installs the Little Snitch package only.
-
-
-``tool_snitch.license``
-~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-``tool_snitch.clean``
-~~~~~~~~~~~~~~~~~~~~~
-*Meta-state*.
-
-Undoes everything performed in the ``tool_snitch`` meta-state
-in reverse order.
-
-
-``tool_snitch.package.clean``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Removes the Little Snitch package.
-
-
-``tool_snitch.license.clean``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
+<INSERT_STATES>
 
 Development
 -----------

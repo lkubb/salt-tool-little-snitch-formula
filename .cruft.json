@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/lkubb/salt-tool-template-formula",
-  "commit": "8eb784d74343e8fe8ef8a6c66dc50e5f0456981f",
+  "commit": "2a2c58080298a755908e73eece940b8054720627",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -37,11 +37,11 @@
       "has_completions": "n",
       "has_tests": "n",
       "git_username": "lkubb",
-      "_lookup": {},
-      "_settings": {
+      "lookup": {},
+      "settings": {
         "license": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n  <key>d8e8fca2dc0</key>\n  <data>\n  PCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXAK\n  </data>\n  <key>57a54c8e2</key>\n  <dict>\n    <key>owner</key>\n    <string>user</string>\n  </dict>\n  <key>b5470458133</key>\n  <data>\n  PCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwCg==\n  </data>\n</dict>\n</plist>"
       },
-      "_usersettings": {},
+      "usersettings": {},
       "_template": "https://github.com/lkubb/salt-tool-template-formula"
     }
   },
